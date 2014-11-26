@@ -4,10 +4,14 @@ namespace Robots
 {
     public class PlaygroundTests
     {
-        [Subject("Playgroud")]
-        public class When_the_ground_is_created
+        public class Context
         {
-            private static Ground _ground;
+            protected static Ground _ground;
+        }
+
+        [Subject("Playgroud")]
+        public class When_the_ground_is_created : Context
+        {
             private static int _width = 5;
             private static int _height = 5;
             
