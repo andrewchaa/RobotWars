@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Machine.Specifications;
+﻿using Machine.Specifications;
 
 namespace Robots
 {
@@ -11,7 +10,7 @@ namespace Robots
 
             Establish context = () =>
             {
-                _robot = new Robot(new Location(1, 1), "N");
+                _robot = new Robot(new Ground(5, 5), new Location(1, 1), "N");
             };
         }
 

@@ -17,8 +17,8 @@ namespace Robots
             
             Because of = () => _ground = new Ground(_width, _height);
 
-            It should_have_set_the_correct_width = () => _ground.Width.ShouldEqual(_width);
-            It should_have_set_the_correct_height = () => _ground.Width.ShouldEqual(_height);
+            It should_have_set_the_correct_width = () => _ground.X.ShouldEqual(_width);
+            It should_have_set_the_correct_height = () => _ground.X.ShouldEqual(_height);
         }
     }
 

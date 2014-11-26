@@ -4,13 +4,13 @@
     {
         private readonly string[,] _ground;
 
-        public Ground(int width, int height)
+        public Ground(int x, int y)
         {
-            _ground = new string[width, height];
+            _ground = new string[x, y];
         }
 
-        public int Width { get { return _ground.GetLength(0); } }
-        public int Height { get { return _ground.GetLength(1); } }
-
+        public int X { get { return _ground.GetLength(0); } }
+        public int Y { get { return _ground.GetLength(1); } }
+        public Robot Robot { get; set; }
     }
 }

@@ -4,11 +4,13 @@
     {
         public Location Location { get; set; }
         public string Direction { get; private set; }
+        private Ground _ground;
 
-        public Robot(Location location, string direction)
+        public Robot(Ground ground, Location location, string direction)
         {
             Location = location;
             Direction = direction;
+            _ground = ground;
         }
 
         public void Turn(string turn)
@@ -35,16 +37,44 @@
             switch (Direction)
             {
                 case "N":
-                    Location.Y++;
+                    if (Location.Y == _ground.Y)
+                    {
+                        Location.Y = 1;
+                    }
+                    else
+                    {
+                        Location.Y++;
+                    }
                     break;
                 case "W":
-                    Location.X--;
+                    if (Location.X == 1)
+                    {
+                        Location.X = _ground.X;
+                    }
+                    else
+                    {
+                        Location.X--;
+                    }
                     break;
                 case "S":
-                    Location.Y--;
+                    if (Location.Y == 1)
+                    {
+                        Location.Y = _ground.Y;
+                    }
+                    else
+                    {
+                        Location.Y--;
+                    }
                     break;
                 case "E":
-                    Location.X++;
+                    if (Location.X == _ground.X)
+                    {
+                        Location.X = 1;
+                    }
+                    else
+                    {
+                        Location.X++;
+                    }
                     break;
             }
         }
