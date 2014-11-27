@@ -7,7 +7,7 @@ namespace Robots
     {
         public class Context
         {
-            protected static IRobot _robot;
+            protected static Robot _robot;
 
             Establish context = () =>
             {

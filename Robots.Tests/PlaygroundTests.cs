@@ -7,7 +7,7 @@ namespace Robots
     {
         public class Context
         {
-            protected static IArena _arena;
+            protected static Arena _arena;
         }
 
         [Subject("Playgroud")]

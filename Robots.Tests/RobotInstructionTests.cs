@@ -8,13 +8,14 @@ namespace Robots.Tests
         [Subject("Instruction")]
         public class Robot_1
         {
-            private static IArena _arena;
-            private static IRobot _robot;
+            private static Arena _arena;
+            private static Robot _robot;
 
             Establish context = () =>
             {
+                var location = new Location(1, 2);
                 _arena = new Arena(5, 5);
-                _robot = new Robot(_arena, new Location(1, 2), "N");
+                _robot = new Robot(_arena, location, "N");
             };
 
             Because of = () => _robot.Instructions("LMLMLMLMM");
@@ -26,8 +27,8 @@ namespace Robots.Tests
         [Subject("Instruction")]
         public class Robot_2
         {
-            private static IArena _arena;
-            private static IRobot _robot;
+            private static Arena _arena;
+            private static Robot _robot;
 
             Establish context = () =>
             {

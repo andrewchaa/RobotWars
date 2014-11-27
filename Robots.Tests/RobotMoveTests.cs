@@ -7,8 +7,8 @@ namespace Robots
     {
         public class Context
         {
-            protected static IRobot _robot;
-            protected static IArena _arena;
+            protected static Robot _robot;
+            protected static Arena _arena;
             protected static int _startX;
             protected static int _startY;
 

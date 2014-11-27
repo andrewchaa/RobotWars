@@ -51,6 +51,7 @@
     <Compile Include="PlaygroundTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RobotInstructionTests.cs" />
+    <Compile Include="RobotMoveExceptionTests.cs" />
     <Compile Include="RobotMoveTests.cs" />
     <Compile Include="RobotDirectionTests.cs" />
   </ItemGroup>

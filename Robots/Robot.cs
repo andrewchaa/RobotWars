@@ -3,17 +3,17 @@ using Robots.Contracts;
 
 namespace Robots
 {
-    public class Robot : IRobot
+    public class Robot : ITurn, IMove, IReceiveInstruction
     {
-        public ILocation Location { get; set; }
+        public Location Location { get; set; }
         public string Heading { get; private set; }
         public ILog Log { get; set; }
 
-        private readonly IArena _arena;
+        private readonly Arena _arena;
 
-        public Robot(IArena arena, ILocation location, string heading)
+        public Robot(Arena arena, Location location, string heading)
         {
-            Location = location;
+            Location = new Location(location);
             Heading = heading;
             _arena = arena;
             Log = new Log();
@@ -41,7 +41,43 @@ namespace Robots
 
         public void Move()
         {
-            Location.Move(Heading);
+            switch (Heading)
+            {
+                case "N":
+                    MoveNorth();
+                    break;
+                case "W":
+                    MoveWest();
+                    break;
+                case "S":
+                    MoveSouth();
+                    break;
+                case "E":
+                    MoveEast();
+                    break;
+            }
+
+            Log.InfoFormat("Moved {0} to {1}, {2}", Heading, Location.X, Location.Y);
+        }
+
+        private void MoveNorth()
+        {
+            Location.Y++;
+        }
+
+        private void MoveWest()
+        {
+            Location.X--;
+        }
+
+        private void MoveSouth()
+        {
+            Location.Y--;
+        }
+
+        private void MoveEast()
+        {
+            Location.X++;
         }
 
         public void Instructions(string instructionString)

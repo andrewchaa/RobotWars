@@ -40,10 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Arena.cs" />
-    <Compile Include="Contracts\IArena.cs" />
-    <Compile Include="Contracts\ILocation.cs" />
     <Compile Include="Contracts\ILog.cs" />
-    <Compile Include="Contracts\IRobot.cs" />
+    <Compile Include="Contracts\ITurn.cs" />
+    <Compile Include="EndOfArenaException.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
