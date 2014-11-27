@@ -7,7 +7,12 @@ namespace Robots
     {
         public void InfoFormat(string format, params object[] args)
         {
-            Console.WriteLine(format, args);
+            Console.WriteLine("INFO - " + format, args);
+        }
+
+        public void ErrorFormat(string format, params object[] args)
+        {
+            Console.WriteLine("ERROR - " + format, args);
         }
     }
 }

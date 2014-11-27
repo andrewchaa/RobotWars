@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using Robots.Contracts;
+using Robots.Domains;
 
 namespace Robots
 {
@@ -11,7 +12,8 @@ namespace Robots
 
             Establish context = () =>
             {
-                _robot = new Robot(new Arena(5, 5), new Location(1, 1), "N");
+
+                _robot = new Robot(new Arena(5, 5), new Location(1, 1), "N", new Mover());
             };
         }
 

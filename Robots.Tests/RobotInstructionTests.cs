@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using Robots.Contracts;
+using Robots.Domains;
 
 namespace Robots.Tests
 {
@@ -15,7 +16,7 @@ namespace Robots.Tests
             {
                 var location = new Location(1, 2);
                 _arena = new Arena(5, 5);
-                _robot = new Robot(_arena, location, "N");
+                _robot = new Robot(_arena, location, "N", new Mover());
             };
 
             Because of = () => _robot.Instructions("LMLMLMLMM");
@@ -33,7 +34,7 @@ namespace Robots.Tests
             Establish context = () =>
             {
                 _arena = new Arena(5, 5);
-                _robot = new Robot(_arena, new Location(3, 3), "E");
+                _robot = new Robot(_arena, new Location(3, 3), "E", new Mover());
             };
 
             Because of = () => _robot.Instructions("MMRMMRMRRM");

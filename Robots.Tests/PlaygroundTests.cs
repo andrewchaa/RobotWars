@@ -1,5 +1,6 @@
 ﻿using Machine.Specifications;
 using Robots.Contracts;
+using Robots.Domains;
 
 namespace Robots
 {
