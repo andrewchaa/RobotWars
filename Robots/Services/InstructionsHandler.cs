@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Robots.Contracts;
 using Robots.Domains;
+using Robots.Infrastructure;
 
 namespace Robots.Services
 {

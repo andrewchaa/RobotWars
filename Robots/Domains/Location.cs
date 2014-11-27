@@ -1,4 +1,5 @@
 using Robots.Contracts;
+using Robots.Infrastructure;
 
 namespace Robots.Domains
 {

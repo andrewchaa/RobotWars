@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Robots
+namespace Robots.Infrastructure
 {
     public class EndOfArenaException : Exception
     {

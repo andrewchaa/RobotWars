@@ -44,9 +44,9 @@
     <Compile Include="Contracts\ILog.cs" />
     <Compile Include="Contracts\IMove.cs" />
     <Compile Include="Contracts\ITurn.cs" />
-    <Compile Include="EndOfArenaException.cs" />
+    <Compile Include="Infrastructure\EndOfArenaException.cs" />
     <Compile Include="Domains\Location.cs" />
-    <Compile Include="Log.cs" />
+    <Compile Include="Infrastructure\Log.cs" />
     <Compile Include="Services\InstructionsHandler.cs" />
     <Compile Include="Services\Mover.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

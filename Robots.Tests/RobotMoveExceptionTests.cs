@@ -1,6 +1,7 @@
 ﻿using System;
 using Machine.Specifications;
 using Robots.Domains;
+using Robots.Infrastructure;
 using Robots.Services;
 
 namespace Robots.Tests
