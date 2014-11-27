@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using Robots.Contracts;
 
 namespace Robots
 {
@@ -6,20 +7,19 @@ namespace Robots
     {
         public class Context
         {
-            protected static Robot _robot;
+            protected static IRobot _robot;
 
             Establish context = () =>
             {
-                _robot = new Robot(new Arena(5, 5), 1, 1, "N");
+                _robot = new Robot(new Arena(5, 5), new Location(1, 1), "N");
             };
         }
 
         [Subject(typeof(Robot))]
         public class When_the_robot_is_created : Context
         {
-            It should_set_the_position_x = () => _robot.Location.X.ShouldEqual(1);
-            It should_set_the_position_Y = () => _robot.Location.X.ShouldEqual(1);
-            It should_set_the_facing = () => _robot.Heading.ShouldEqual("N");
+            It should_set_the_initial_position_correctly = () => _robot.Location.ShouldEqual(new Location(1, 1));
+            It should_set_the_heading_correctly = () => _robot.Heading.ShouldEqual("N");
         }
 
         [Subject(typeof(Robot))]
@@ -43,8 +43,7 @@ namespace Robots
         {
             Because of = () => _robot.Move();
 
-            It should_stay_on_X = () => _robot.Location.X.ShouldEqual(1);
-            It should_move_on_Y = () => _robot.Location.Y.ShouldEqual(2);
+            It should_move_to = () => _robot.Location.ShouldEqual(new Location(1, 2));
         }
 
     }

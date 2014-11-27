@@ -1,18 +1,22 @@
 ﻿using System.Linq;
+using Robots.Contracts;
 
 namespace Robots
 {
-    public class Robot
+    public class Robot : IRobot
     {
-        public Location Location { get; set; }
+        public ILocation Location { get; set; }
         public string Heading { get; private set; }
-        private readonly Arena _arena;
+        public ILog Log { get; set; }
 
-        public Robot(Arena arena, int x, int y, string heading)
+        private readonly IArena _arena;
+
+        public Robot(IArena arena, ILocation location, string heading)
         {
-            Location = new Location(x, y);
+            Location = location;
             Heading = heading;
             _arena = arena;
+            Log = new Log();
         }
 
         public void Turn(string turn)
@@ -32,11 +36,12 @@ namespace Robots
                     Heading = turn == "L" ? "N" : "S";
                     break;
             }
+            Log.InfoFormat("Turned {0} to {1}", turn, Heading);
         }
 
         public void Move()
         {
-            _arena.Move(this);
+            Location.Move(Heading);
         }
 
         public void Instructions(string instructionString)
@@ -44,6 +49,7 @@ namespace Robots
             var instructions = instructionString.Select(i => i.ToString()).ToList();
             foreach (var instruction in instructions)
             {
+                Log.InfoFormat("Received an instraction: {0}", instruction);
                 if (instruction == "M")
                 {
                     Move();

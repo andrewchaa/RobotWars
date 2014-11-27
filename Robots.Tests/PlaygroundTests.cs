@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using Robots.Contracts;
 
 namespace Robots
 {
@@ -6,7 +7,7 @@ namespace Robots
     {
         public class Context
         {
-            protected static Arena _arena;
+            protected static IArena _arena;
         }
 
         [Subject("Playgroud")]
@@ -17,8 +18,8 @@ namespace Robots
             
             Because of = () => _arena = new Arena(_width, _height);
 
-            It should_have_set_the_correct_width = () => _arena.X.ShouldEqual(_width);
-            It should_have_set_the_correct_height = () => _arena.X.ShouldEqual(_height);
+            It should_have_set_the_correct_width = () => _arena.Right.ShouldEqual(_width);
+            It should_have_set_the_correct_height = () => _arena.Right.ShouldEqual(_height);
         }
     }
 

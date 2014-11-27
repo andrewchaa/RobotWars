@@ -1,0 +1,10 @@
+﻿namespace Robots.Contracts
+{
+    public interface IArena
+    {
+        int Left { get; }
+        int Right { get; }
+        int Top { get; }
+        int Bottom { get; }
+    }
+}

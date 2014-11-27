@@ -1,35 +1,24 @@
-﻿namespace Robots
+﻿using Robots.Contracts;
+
+namespace Robots
 {
-    public class Arena
+    public class Arena : IArena
     {
-        private readonly string[,] _ground;
+        public int Left { get; private set; } 
+        public int Right { get; private set; } 
+        public int Top { get; private set; }
+        public int Bottom { get; private set; }
 
-        public Arena(int x, int y)
+        public ILog Log { get; set; }
+
+        public Arena(int right, int top)
         {
-            _ground = new string[x, y];
-        }
+            Left = 0;
+            Right = right;
+            Top = top;
+            Bottom = 0;
 
-        public int X { get { return _ground.GetLength(0); } }
-        public int Y { get { return _ground.GetLength(1); } }
-
-        public void Move(Robot robot)
-        {
-            switch (robot.Heading)
-            {
-                case "N":
-                    robot.Location.Y++;
-                    break;
-                case "W":
-                    robot.Location.X--;
-                    break;
-                case "S":
-                    robot.Location.Y--;
-                    break;
-                case "E":
-                    robot.Location.X++;
-                    break;
-            }
-
+            Log = new Log();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Machine.Specifications;
+using Robots.Contracts;
 
 namespace Robots.Tests
 {
@@ -7,38 +8,36 @@ namespace Robots.Tests
         [Subject("Instruction")]
         public class Robot_1
         {
-            private static Arena _arena;
-            private static Robot _robot;
+            private static IArena _arena;
+            private static IRobot _robot;
 
             Establish context = () =>
             {
                 _arena = new Arena(5, 5);
-                _robot = new Robot(_arena, 1, 2, "N");
+                _robot = new Robot(_arena, new Location(1, 2), "N");
             };
 
             Because of = () => _robot.Instructions("LMLMLMLMM");
 
-            It should_move_to_X_of = () => _robot.Location.X.ShouldEqual(1);
-            It should_move_to_Y_of = () => _robot.Location.Y.ShouldEqual(3);
+            It should_move_to = () => _robot.Location.ShouldEqual(new Location(1, 3));
             It houlsd_head_to = () => _robot.Heading.ShouldEqual("N");
         }
 
         [Subject("Instruction")]
         public class Robot_2
         {
-            private static Arena _arena;
-            private static Robot _robot;
+            private static IArena _arena;
+            private static IRobot _robot;
 
             Establish context = () =>
             {
                 _arena = new Arena(5, 5);
-                _robot = new Robot(_arena, 3, 3, "E");
+                _robot = new Robot(_arena, new Location(3, 3), "E");
             };
 
             Because of = () => _robot.Instructions("MMRMMRMRRM");
 
-            It should_move_to_X_of = () => _robot.Location.X.ShouldEqual(5);
-            It should_move_to_Y_of = () => _robot.Location.Y.ShouldEqual(1);
+            It should_move_to = () => _robot.Location.ShouldEqual(new Location(5, 1));
             It houlsd_head_to = () => _robot.Heading.ShouldEqual("E");
         }
 

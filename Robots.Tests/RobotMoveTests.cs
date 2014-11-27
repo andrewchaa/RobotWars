@@ -1,6 +1,5 @@
-﻿using System.CodeDom;
-using System.Security.Cryptography.X509Certificates;
-using Machine.Specifications;
+﻿using Machine.Specifications;
+using Robots.Contracts;
 
 namespace Robots
 {
@@ -8,14 +7,17 @@ namespace Robots
     {
         public class Context
         {
-            protected static Robot _robot;
-            protected static Arena _arena;
-            protected static Location _start;
+            protected static IRobot _robot;
+            protected static IArena _arena;
+            protected static int _startX;
+            protected static int _startY;
+
 
             Establish context = () =>
             {
                 _arena = new Arena(5, 5);
-                _start = new Location(2, 2);
+                _startX = 2;
+                _startY = 2;
             };
 
         }
@@ -25,13 +27,12 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_arena, 2, 2, "N");
+                _robot = new Robot(_arena, new Location(_startX, _startY), "N");
             };
 
             Because of = () => _robot.Move();
 
-            It should_stay_on_X = () => _robot.Location.X.ShouldEqual(_start.X);
-            It should_move_on_Y = () => _robot.Location.Y.ShouldEqual(_start.Y + 1);
+            It should_move_to = () => _robot.Location.ShouldEqual(new Location(_startX, _startY + 1));
         }
 
         [Subject(typeof (Robot))]
@@ -39,13 +40,12 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_arena, 2, 2, "S");
+                _robot = new Robot(_arena, new Location(_startX, _startY), "S");
             };
 
             Because of = () => _robot.Move();
 
-            It should_stay_on_X = () => _robot.Location.X.ShouldEqual(_start.X);
-            It should_move_on_Y = () => _robot.Location.Y.ShouldEqual(_start.Y - 1);
+            It should_move_to = () => _robot.Location.ShouldEqual(new Location(_startX, _startY - 1));
         }
 
         [Subject(typeof (Robot))]
@@ -53,13 +53,12 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_arena, 2, 2, "E");
+                _robot = new Robot(_arena, new Location(_startX, _startY), "E");
             };
 
             Because of = () => _robot.Move();
 
-            It should_move_on_X = () => _robot.Location.X.ShouldEqual(_start.X + 1);
-            It should_stay_on_Y = () => _robot.Location.Y.ShouldEqual(_start.Y);
+            It should_move_to = () => _robot.Location.ShouldEqual(new Location(_startX + 1, _startY));
         }
 
 
