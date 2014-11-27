@@ -1,44 +1,32 @@
-﻿using System.Linq;
-using Robots.Contracts;
+﻿using Robots.Contracts;
 
 namespace Robots.Domains
 {
-    public class Robot : ITurn, IReceiveInstruction
+    public class Robot
     {
         public Location Location { get; set; }
-        public string Heading { get; private set; }
-        public ILog Log { get; set; }
+        public string Heading { get; set; }
 
         private readonly Arena _arena;
         private readonly IMove _mover;
+        private readonly ITurn _turner;
+        private readonly IHandleInstructions _instructionHandler;
 
-        public Robot(Arena arena, Location location, string heading, IMove mover)
+        public Robot(Arena arena, Location location, string heading, IMove mover, ITurn turner, 
+            IHandleInstructions instructionHandler)
         {
             Location = new Location(location);
             Heading = heading;
+
             _arena = arena;
             _mover = mover;
-            Log = new Log();
+            _turner = turner;
+            _instructionHandler = instructionHandler;
         }
 
-        public void Turn(string turn)
+        public void Turn(string to)
         {
-            switch (Heading)
-            {
-                case "N":
-                    Heading = turn == "L" ? "W" : "E";
-                    break;
-                case "W":
-                    Heading = turn == "L" ? "S" : "N";
-                    break;
-                case "S":
-                    Heading = turn == "L" ? "E" : "W";
-                    break;
-                default:
-                    Heading = turn == "L" ? "N" : "S";
-                    break;
-            }
-            Log.InfoFormat("Turned {0} to {1}", turn, Heading);
+            _turner.Turn(this, to);
         }
 
         public void Move()
@@ -46,20 +34,9 @@ namespace Robots.Domains
             _mover.Move(this, _arena);
         }
 
-        public void Instructions(string instructionString)
+        public void Handle(string commandString)
         {
-            var instructions = instructionString.Select(i => i.ToString()).ToList();
-            foreach (var instruction in instructions)
-            {
-                Log.InfoFormat("Received an instraction: {0}", instruction);
-                if (instruction == "M")
-                {
-                    Move();
-                    continue;
-                }
-                    
-                Turn(instruction);
-            }
+            _instructionHandler.Handle(this, commandString);
         }
     }
 

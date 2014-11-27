@@ -1,6 +1,7 @@
 ﻿using Machine.Specifications;
 using Robots.Contracts;
 using Robots.Domains;
+using Robots.Services;
 
 namespace Robots
 {
@@ -12,7 +13,6 @@ namespace Robots
             protected static Arena _arena;
             protected static int _startX;
             protected static int _startY;
-
 
             Establish context = () =>
             {
@@ -28,7 +28,7 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_arena, new Location(_startX, _startY), "N", new Mover());
+                _robot = new Robot(_arena, new Location(_startX, _startY), "N", new Mover(), new Turner(), new InstructionsHandler());
             };
 
             Because of = () => _robot.Move();
@@ -41,7 +41,7 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_arena, new Location(_startX, _startY), "S", new Mover());
+                _robot = new Robot(_arena, new Location(_startX, _startY), "S", new Mover(), new Turner(), new InstructionsHandler());
             };
 
             Because of = () => _robot.Move();
@@ -54,7 +54,7 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_arena, new Location(_startX, _startY), "E", new Mover());
+                _robot = new Robot(_arena, new Location(_startX, _startY), "E", new Mover(), new Turner(), new InstructionsHandler());
             };
 
             Because of = () => _robot.Move();

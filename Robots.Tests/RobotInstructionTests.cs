@@ -1,6 +1,7 @@
 ﻿using Machine.Specifications;
 using Robots.Contracts;
 using Robots.Domains;
+using Robots.Services;
 
 namespace Robots.Tests
 {
@@ -16,10 +17,10 @@ namespace Robots.Tests
             {
                 var location = new Location(1, 2);
                 _arena = new Arena(5, 5);
-                _robot = new Robot(_arena, location, "N", new Mover());
+                _robot = new Robot(_arena, location, "N", new Mover(), new Turner(), new InstructionsHandler());
             };
 
-            Because of = () => _robot.Instructions("LMLMLMLMM");
+            Because of = () => _robot.Handle("LMLMLMLMM");
 
             It should_move_to = () => _robot.Location.ShouldEqual(new Location(1, 3));
             It houlsd_head_to = () => _robot.Heading.ShouldEqual("N");
@@ -34,10 +35,10 @@ namespace Robots.Tests
             Establish context = () =>
             {
                 _arena = new Arena(5, 5);
-                _robot = new Robot(_arena, new Location(3, 3), "E", new Mover());
+                _robot = new Robot(_arena, new Location(3, 3), "E", new Mover(), new Turner(), new InstructionsHandler());
             };
 
-            Because of = () => _robot.Instructions("MMRMMRMRRM");
+            Because of = () => _robot.Handle("MMRMMRMRRM");
 
             It should_move_to = () => _robot.Location.ShouldEqual(new Location(5, 1));
             It houlsd_head_to = () => _robot.Heading.ShouldEqual("E");

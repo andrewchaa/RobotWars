@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IHandleInstructions.cs" />
     <Compile Include="Domains\Arena.cs" />
     <Compile Include="Contracts\ILog.cs" />
     <Compile Include="Contracts\IMove.cs" />
@@ -46,9 +47,11 @@
     <Compile Include="EndOfArenaException.cs" />
     <Compile Include="Domains\Location.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="Mover.cs" />
+    <Compile Include="Services\InstructionsHandler.cs" />
+    <Compile Include="Services\Mover.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domains\Robot.cs" />
+    <Compile Include="Services\Turner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

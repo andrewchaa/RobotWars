@@ -1,12 +1,9 @@
-﻿namespace Robots.Contracts
+﻿using Robots.Domains;
+
+namespace Robots.Contracts
 {
     public interface ITurn
     {
-        void Turn(string turn);
-    }
-
-    public interface IReceiveInstruction
-    {
-        void Instructions(string instructionString);
+        void Turn(Robot robot, string to);
     }
 }

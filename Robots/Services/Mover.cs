@@ -1,7 +1,7 @@
 ﻿using Robots.Contracts;
 using Robots.Domains;
 
-namespace Robots
+namespace Robots.Services
 {
     public class Mover : IMove
     {
