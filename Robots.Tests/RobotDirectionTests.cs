@@ -19,7 +19,7 @@ namespace Robots
         {
             It should_set_the_position_x = () => _robot.Location.X.ShouldEqual(1);
             It should_set_the_position_Y = () => _robot.Location.X.ShouldEqual(1);
-            It should_set_the_facing = () => _robot.Direction.ShouldEqual("N");
+            It should_set_the_facing = () => _robot.Heading.ShouldEqual("N");
         }
 
         [Subject(typeof(Robot))]
@@ -27,7 +27,7 @@ namespace Robots
         {
             Because of = () => _robot.Turn("L");
 
-            It should_turn_to_East = () => _robot.Direction.ShouldEqual("W");
+            It should_turn_to_East = () => _robot.Heading.ShouldEqual("W");
         }
 
         [Subject(typeof(Robot))]
@@ -35,7 +35,7 @@ namespace Robots
         {
             Because of = () => _robot.Turn("R");
 
-            It should_turn_to_East = () => _robot.Direction.ShouldEqual("E");
+            It should_turn_to_East = () => _robot.Heading.ShouldEqual("E");
         }
 
         [Subject(typeof (Robot))]
