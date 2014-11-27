@@ -6,7 +6,7 @@ namespace Robots
     {
         public class Context
         {
-            protected static Ground _ground;
+            protected static Arena _arena;
         }
 
         [Subject("Playgroud")]
@@ -15,10 +15,10 @@ namespace Robots
             private static int _width = 5;
             private static int _height = 5;
             
-            Because of = () => _ground = new Ground(_width, _height);
+            Because of = () => _arena = new Arena(_width, _height);
 
-            It should_have_set_the_correct_width = () => _ground.X.ShouldEqual(_width);
-            It should_have_set_the_correct_height = () => _ground.X.ShouldEqual(_height);
+            It should_have_set_the_correct_width = () => _arena.X.ShouldEqual(_width);
+            It should_have_set_the_correct_height = () => _arena.X.ShouldEqual(_height);
         }
     }
 

@@ -1,16 +1,18 @@
-﻿namespace Robots
+﻿using System.Linq;
+
+namespace Robots
 {
     public class Robot
     {
         public Location Location { get; set; }
         public string Heading { get; private set; }
-        private Ground _ground;
+        private readonly Arena _arena;
 
-        public Robot(Ground ground, Location location, string heading)
+        public Robot(Arena arena, int x, int y, string heading)
         {
-            Location = new Location(location.X, location.Y);
+            Location = new Location(x, y);
             Heading = heading;
-            _ground = ground;
+            _arena = arena;
         }
 
         public void Turn(string turn)
@@ -34,7 +36,22 @@
 
         public void Move()
         {
-            _ground.Move(this);
+            _arena.Move(this);
+        }
+
+        public void Instructions(string instructionString)
+        {
+            var instructions = instructionString.Select(i => i.ToString()).ToList();
+            foreach (var instruction in instructions)
+            {
+                if (instruction == "M")
+                {
+                    Move();
+                    continue;
+                }
+                    
+                Turn(instruction);
+            }
         }
     }
 

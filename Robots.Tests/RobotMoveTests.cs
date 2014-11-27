@@ -9,12 +9,12 @@ namespace Robots
         public class Context
         {
             protected static Robot _robot;
-            protected static Ground _ground;
+            protected static Arena _arena;
             protected static Location _start;
 
             Establish context = () =>
             {
-                _ground = new Ground(5, 5);
+                _arena = new Arena(5, 5);
                 _start = new Location(2, 2);
             };
 
@@ -25,7 +25,7 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_ground, _start, "N");
+                _robot = new Robot(_arena, 2, 2, "N");
             };
 
             Because of = () => _robot.Move();
@@ -39,7 +39,7 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_ground, _start, "S");
+                _robot = new Robot(_arena, 2, 2, "S");
             };
 
             Because of = () => _robot.Move();
@@ -53,7 +53,7 @@ namespace Robots
         {
             Establish context = () =>
             {
-                _robot = new Robot(_ground, _start, "E");
+                _robot = new Robot(_arena, 2, 2, "E");
             };
 
             Because of = () => _robot.Move();

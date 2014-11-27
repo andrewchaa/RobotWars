@@ -10,7 +10,7 @@ namespace Robots
 
             Establish context = () =>
             {
-                _robot = new Robot(new Ground(5, 5), new Location(1, 1), "N");
+                _robot = new Robot(new Arena(5, 5), 1, 1, "N");
             };
         }
 
