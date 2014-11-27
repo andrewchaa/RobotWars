@@ -1,5 +1,6 @@
 ﻿using System;
 using Machine.Specifications;
+using Robots.Contracts;
 using Robots.Domains;
 using Robots.Infrastructure;
 using Robots.Services;
@@ -12,7 +13,19 @@ namespace Robots.Tests
         {
             protected static Robot _robot;
             protected static Exception _exception;
-            
+            protected static IMove _mover;
+            protected static ITurn _turner;
+            protected static IHandleInstructions _instructionsHandler;
+            protected static Arena _arena;
+
+            Establish context = () =>
+            {
+                _mover = new Mover();
+                _turner = new Turner();
+                _instructionsHandler = new InstructionsHandler();
+                _arena = new Arena(5, 5);
+            };
+
         }
 
         [Subject(typeof(EndOfArenaException))]
@@ -20,7 +33,7 @@ namespace Robots.Tests
         {
             Establish context = () =>
             {
-                _robot = new Robot(new Arena(5, 5), new Location(5, 5), "N", new Mover(), new Turner(), new InstructionsHandler());
+                _robot = new Robot(_arena, new Location(5, 5), "N", _mover, _turner, _instructionsHandler);
             };
 
             Because of = () => _exception = Catch.Exception(() => _robot.Move());
@@ -33,7 +46,7 @@ namespace Robots.Tests
         {
             Establish context = () =>
             {
-                _robot = new Robot(new Arena(5, 5), new Location(5, 0), "S", new Mover(), new Turner(), new InstructionsHandler());
+                _robot = new Robot(_arena, new Location(5, 0), "S", _mover, _turner, _instructionsHandler);
             };
 
             Because of = () => _exception = Catch.Exception(() => _robot.Move());
@@ -46,7 +59,7 @@ namespace Robots.Tests
         {
             Establish context = () =>
             {
-                _robot = new Robot(new Arena(5, 5), new Location(0, 1), "W", new Mover(), new Turner(), new InstructionsHandler());
+                _robot = new Robot(_arena, new Location(0, 1), "W", _mover, _turner, _instructionsHandler);
             };
 
             Because of = () => _exception = Catch.Exception(() => _robot.Move());
@@ -59,7 +72,7 @@ namespace Robots.Tests
         {
             Establish context = () =>
             {
-                _robot = new Robot(new Arena(5, 5), new Location(5, 1), "E", new Mover(), new Turner(), new InstructionsHandler());
+                _robot = new Robot(_arena, new Location(5, 1), "E", _mover, _turner, _instructionsHandler);
             };
 
             Because of = () => _exception = Catch.Exception(() => _robot.Move());

@@ -39,13 +39,5 @@ namespace Robots
             It should_turn_to_East = () => _robot.Heading.ShouldEqual("E");
         }
 
-        [Subject(typeof (Robot))]
-        public class When_the_robot_moves : Context
-        {
-            Because of = () => _robot.Move();
-
-            It should_move_to = () => _robot.Location.ShouldEqual(new Location(1, 2));
-        }
-
     }
 }
