@@ -31,7 +31,7 @@ namespace Robots.Domains
 
         public void Move()
         {
-            _mover.Move(this, _arena);
+            Location = new Location(_mover.Move(Heading, Location, _arena));
         }
 
         public void Handle(string commandString)

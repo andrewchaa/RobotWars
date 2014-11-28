@@ -13,54 +13,54 @@ namespace Robots.Services
             Log = new Log();
         }
 
-        public void Move(Robot robot, Arena arena)
+        public Location Move(string heading, Location location, Arena arena)
         {
-            switch (robot.Heading)
+            switch (heading)
             {
                 case "N":
-                    if (robot.Location.Y == arena.Top)
+                    if (location.Y == arena.Top)
                     {
-                        Log.ErrorFormat("The robot is currently at the top end of the arena: {0}, {1}",
-                            robot.Location.X, robot.Location.Y);
+                        Log.ErrorFormat("The robot is currently at the top end of the arena: {0}, {1}", location.X, location.Y);
                         throw new EndOfArenaException();
                     }
 
-                    robot.Location.Y++;
+                    location.Y++;
                     break;
+
                 case "W":
-                    if (robot.Location.X == arena.Left) 
+                    if (location.X == arena.Left) 
                     {
-                        Log.ErrorFormat("The robot is currently at the left end of the arena: {0}, {1}",
-                            robot.Location.X, robot.Location.Y);
+                        Log.ErrorFormat("The robot is currently at the left end of the arena: {0}, {1}", location.X, location.Y);
                         throw new EndOfArenaException();
                     }
 
-                    robot.Location.X--;
+                    location.X--;
                     break;
+                
                 case "S":
-                    if (robot.Location.Y == arena.Bottom)
+                    if (location.Y == arena.Bottom)
                     {
-                        Log.ErrorFormat("The robot is currently at the bottom end of the arena: {0}, {1}",
-                            robot.Location.X, robot.Location.Y);
+                        Log.ErrorFormat("The robot is currently at the bottom end of the arena: {0}, {1}", location.X, location.Y);
                         throw new EndOfArenaException();
                     }
 
-                    robot.Location.Y--;
+                    location.Y--;
                     break;
+                
                 case "E":
-                    if (robot.Location.X == arena.Right)
+                    if (location.X == arena.Right)
                     {
-                        Log.ErrorFormat("The robot is currently at the right end of the arena: {0}, {1}",
-                            robot.Location.X, robot.Location.Y);
+                        Log.ErrorFormat("The robot is currently at the right end of the arena: {0}, {1}", location.X, location.Y);
                         throw new EndOfArenaException();
                     }
 
-                    robot.Location.X++;
+                    location.X++;
                     break;
             }
 
-            Log.InfoFormat("Moved {0} to {1}, {2}", robot.Heading, robot.Location.X, robot.Location.Y);
-            
+            Log.InfoFormat("Moved {0} to {1}, {2}", heading, location.X, location.Y);
+
+            return location;
         }
     }
 }

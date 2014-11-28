@@ -4,6 +4,6 @@ namespace Robots.Contracts
 {
     public interface IMove
     {
-        void Move(Robot robot, Arena arena);
+        Location Move(string heading, Location location, Arena arena);
     }
 }
