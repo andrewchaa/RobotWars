@@ -4,6 +4,6 @@ namespace Robots.Contracts
 {
     public interface ITurn
     {
-        void Turn(Robot robot, string to);
+        string Turn(string heading, string to);
     }
 }

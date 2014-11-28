@@ -26,7 +26,7 @@ namespace Robots.Domains
 
         public void Turn(string to)
         {
-            _turner.Turn(this, to);
+            Heading = _turner.Turn(Heading, to);
         }
 
         public void Move()

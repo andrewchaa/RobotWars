@@ -14,26 +14,27 @@ namespace Robots.Services
             Log = new Log();
         }
 
-        public void Turn(Robot robot, string to)
+        public string Turn(string heading, string to)
         {
-            switch (robot.Heading)
+            string newHeading;
+            switch (heading)
             {
                 case "N":
-                    robot.Heading = to == "L" ? "W" : "E";
+                    newHeading = to == "L" ? "W" : "E";
                     break;
                 case "W":
-                    robot.Heading = to == "L" ? "S" : "N";
+                    newHeading = to == "L" ? "S" : "N";
                     break;
                 case "S":
-                    robot.Heading = to == "L" ? "E" : "W";
+                    newHeading = to == "L" ? "E" : "W";
                     break;
                 default:
-                    robot.Heading = to == "L" ? "N" : "S";
+                    newHeading = to == "L" ? "N" : "S";
                     break;
             }
 
-            Log.InfoFormat("Turned {0} to {1}", to, robot.Heading);
-            
+            Log.InfoFormat("Turned {0} to {1}", to, newHeading);
+            return newHeading;
         }
     }
 }
