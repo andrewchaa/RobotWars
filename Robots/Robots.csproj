@@ -47,6 +47,7 @@
     <Compile Include="Infrastructure\EndOfArenaException.cs" />
     <Compile Include="Domains\Location.cs" />
     <Compile Include="Infrastructure\Log.cs" />
+    <Compile Include="Infrastructure\RobotCollisionException.cs" />
     <Compile Include="Services\InstructionsHandler.cs" />
     <Compile Include="Services\Mover.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

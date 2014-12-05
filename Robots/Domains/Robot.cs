@@ -18,10 +18,12 @@ namespace Robots.Domains
             Location = new Location(location);
             Heading = heading;
 
-            _arena = arena;
             _mover = mover;
             _turner = turner;
             _instructionHandler = instructionHandler;
+            _arena = arena;
+            _arena.AddRobot(this);
+
         }
 
         public void Turn(string to)

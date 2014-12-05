@@ -15,52 +15,30 @@ namespace Robots.Services
 
         public Location Move(string heading, Location location, Arena arena)
         {
+            var newLocation = new Location(location);
             switch (heading)
             {
                 case "N":
-                    if (location.Y == arena.Top)
-                    {
-                        Log.ErrorFormat("The robot is currently at the top end of the arena: {0}, {1}", location.X, location.Y);
-                        throw new EndOfArenaException();
-                    }
-
-                    location.Y++;
+                    newLocation.Y++;
                     break;
 
                 case "W":
-                    if (location.X == arena.Left) 
-                    {
-                        Log.ErrorFormat("The robot is currently at the left end of the arena: {0}, {1}", location.X, location.Y);
-                        throw new EndOfArenaException();
-                    }
-
-                    location.X--;
+                    newLocation.X--;
                     break;
                 
                 case "S":
-                    if (location.Y == arena.Bottom)
-                    {
-                        Log.ErrorFormat("The robot is currently at the bottom end of the arena: {0}, {1}", location.X, location.Y);
-                        throw new EndOfArenaException();
-                    }
-
-                    location.Y--;
+                    newLocation.Y--;
                     break;
                 
                 case "E":
-                    if (location.X == arena.Right)
-                    {
-                        Log.ErrorFormat("The robot is currently at the right end of the arena: {0}, {1}", location.X, location.Y);
-                        throw new EndOfArenaException();
-                    }
-
-                    location.X++;
+                    newLocation.X++;
                     break;
             }
 
-            Log.InfoFormat("Moved {0} to {1}, {2}", heading, location.X, location.Y);
+            arena.CheckMovability(newLocation);
+            Log.InfoFormat("Moved {0} to {1}, {2}", heading, newLocation.X, newLocation.Y);
 
-            return location;
+            return newLocation;
         }
     }
 }

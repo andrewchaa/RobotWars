@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ArenaTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RobotCollisionTests.cs" />
     <Compile Include="RobotInstructionTests.cs" />
     <Compile Include="RobotMoveExceptionTests.cs" />
     <Compile Include="RobotMoveTests.cs" />
